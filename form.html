@@ -10,19 +10,19 @@
 
 <body>
     <h1>Subscribe to Simplon.co</h1>
-    <form method="POST" action="#">
+    <form method="POST" action="">
         <fieldset>
             <label for="firstname">first name:</label>
-            <input id="firstname" type="text">
+            <input id="firstname" type="text" value="">
         </fieldset>
 
         <fieldset>
             <label for="secondname">second name:</label>
-            <input id="secondname" type="text">
+            <input id="secondname" type="text" value="">
         </fieldset>
         <fieldset>
             <label for="mail">mail:</label>
-            <input id="mail" type="mail">
+            <input id="mail" type="mail" value="">
         </fieldset>
         <input type="submit">
     </form>
@@ -34,14 +34,19 @@
         let form = document.querySelector("form");
         form.addEventListener("submit", function(e) {
             // get `input` from the `form
-
+            let input = document.querySelectorAll("fieldset > input");
             // display `input` content into the console
-
+            for (let i = 0; i < input.length(); ++i) {
+                console.log(input[i].value);
+            }
             // put `input` values into `#fill_me`
-
+            document.querySelector("#fill_me").textContent = "TEST";
+            for (let j = 0; j < input.length(); ++j) {
+                document.querySelector("#fill_me").textContent += input[j].value;
+            }
             // DO NOT REMOVE...
             e.preventDefault();
-        })
+        });
     </script>
 </body>
 
