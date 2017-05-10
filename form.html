@@ -10,7 +10,7 @@
 
 <body>
     <h1>Subscribe to Simplon.co</h1>
-    <form method="POST" action="">
+    <form method="POST" action="#">
         <fieldset>
             <label for="firstname">first name:</label>
             <input id="firstname" type="text" value="">
@@ -28,21 +28,36 @@
     </form>
     <section>
         <h1>Welcome</h1>
-        <p id="fill_me"></p>
+        <pre id="fill_me"></pre>
+        <pre id="fill_me2"></pre>
     </section>
     <script>
         let form = document.querySelector("form");
+        setInterval(function() {
+            // get `input` from the `form
+            let input = document.querySelectorAll("fieldset > input");
+            for (let i = 0; i < input.length; i = i + 1) {
+                console.log(input[i].value);
+            }
+            document.querySelector("#fill_me").textContent = "";
+            for (let i = 0; i < input.length; i = i + 1) {
+                document.querySelector("#fill_me").textContent =
+                    document.querySelector("#fill_me").textContent + input[i].value + "\n";
+            }
+        }, 100);
+
         form.addEventListener("submit", function(e) {
             // get `input` from the `form
             let input = document.querySelectorAll("fieldset > input");
             // display `input` content into the console
-            for (let i = 0; i < input.length(); ++i) {
+            for (let i = 0; i < input.length; i = i + 1) {
                 console.log(input[i].value);
             }
             // put `input` values into `#fill_me`
-            document.querySelector("#fill_me").textContent = "TEST";
-            for (let j = 0; j < input.length(); ++j) {
-                document.querySelector("#fill_me").textContent += input[j].value;
+            document.querySelector("#fill_me2").textContent = "";
+            for (let i = 0; i < input.length; i = i + 1) {
+                document.querySelector("#fill_me2").textContent =
+                    document.querySelector("#fill_me2").textContent + input[i].value + "\n";
             }
             // DO NOT REMOVE...
             e.preventDefault();
